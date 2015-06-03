@@ -1,0 +1,119 @@
+body {
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+}
+
+#votewidget {
+    background-color: #F3F6F7;
+    border-radius: 8px;
+    text-align: center;
+    -webkit-user-select: none;
+}
+
+#login {
+    text-align: right;
+}
+
+#toplists .showhide {
+    cursor: pointer;
+    color: #888;
+}
+
+#toplists .showhide:hover {
+    color: #222;
+}
+
+#toplists .glyphicon {
+    opacity: 0.6;
+    float: right;
+}
+
+#toplists td {
+    padding: 0px 0px;
+}
+
+#skipvote {
+    padding: 20px;
+}
+
+#addwidget {
+    padding: 20px;
+}
+
+.babyvotebox h2 {
+    line-height: 0.7em;
+}
+
+.babyvotebox h5 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.2em;
+    line-height: 1.5em;
+}
+
+.toplisttable {
+    width: 100%;
+    /*padding:6px;*/
+    
+    border-collapse: separate;
+    border-spacing: 2px 2px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.toplisttable tr {
+    background-color: #fdfdfd;
+    border-radius: 3px;
+    padding: 0px;
+    line-height: 1.1em;
+}
+
+.toplisttable td.tablename {
+    width: 26%;
+    margin-right: 12px;
+    padding-right: 12px;
+}
+
+.toplisttable td.tablemeter {
+    width: 52%;
+    padding-left: 12px;
+    margin-left: 12px;
+}
+
+.toplisttable td.tablescore {
+    width: 22%;
+    color: #999;
+    text-align: right;
+    font-size: 0.9em;
+}
+
+.meter {
+    height: 0.6em;
+    background-color: #4CA1CC;
+    border-radius: 2px;
+}
+
+.babyvotebox {
+    padding: 20px;
+    margin: 20px;
+    border-radius: 2px;
+    background-color: #4CA1CC;
+    text-align: center;
+    color: #fff;
+    display: block;
+    cursor: pointer;
+}
+
+.babyvotebox:hover {
+    background-color: #1B90CC;
+}
+
+.addnameform {
+    position: relative;
+}
+
+.message {
+    position: absolute;
+    right: -80px;
+    top: 5px;
+}

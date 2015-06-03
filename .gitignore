@@ -1,6 +1,6 @@
 .meteor/local
 .meteor/meteorite
-
+ignored/
 # =========================
 # Operating System Files
 # =========================
