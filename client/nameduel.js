@@ -35,32 +35,34 @@ Template.babyright.helpers({
     },
 });
 
-Template.popularnames.helpers({
-    names: function() {
+Template.votewidget.helpers({
+    canAddNames: function() {
+        return userIsAuthorized();
+    }
+});
+
+Template.toplists.helpers({
+    popularNames: function() {
         var foundVotes = Votes.find();
         var renderFull = Session.equals("popularfull", true);
         return renderVotes(foundVotes, (renderFull) ? 0 : 4);
     },
-});
-
-Template.favoritenames.helpers({
-    names: function() {
+    favoriteNames: function() {
         var foundVotes = Votes.find({
             voter: loggedInUser()
         });
         var renderFull = Session.equals("favoritesfull", true);
         return renderVotes(foundVotes, (renderFull) ? 0 : 4);
-
-    }
-});
-
-Template.toplists.helpers({
+    },
     favoriteslistfull: function() {
         return (Session.equals("favoritesfull", true)) ? 'full' : "";
     },
     popularlistfull: function() {
         return (Session.equals("popularfull", true)) ? 'full' : "";
-    }
+    },
+    showPopularNames: function() {
+        return userIsAuthorized();
+    },
 });
 
 Template.babyleft.events({

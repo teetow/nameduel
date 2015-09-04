@@ -40,11 +40,13 @@
             {{> skipvote}}
         </div>
     </div>
+    {{#if canAddNames}}
     <div class="row">
         <div id="addwidget">
             {{> addwidget}}
         </div>
     </div>
+    {{/if}}
 </template>
 <template name="babyleft">
     <div class="babyvotebox">
@@ -78,34 +80,37 @@
     {{#if currentUser}}
     <div class="row" id="toplists">
         <div class="col-md-4">
-            {{> boilerplate}}
+            <h4>Name duel!</h4>
+            <p>Vote for your favorite!</p>
         </div>
-        <div class="col-md-4 toplistbox favoriteslistbox {{favoriteslistfull}}">
+        <div class="col-md-4 {{#unless showPopularNames}}col-md-offset-4{{/unless}} toplistbox favoriteslistbox {{favoriteslistfull}}">
             {{#if favoriteslistfull}}
-            <h4 class="showhide">My favorite names <i class="glyphicon glyphicon-chevron-up"></i></h4> {{else}}
-            <h4 class="showhide">My favorite names <i class="glyphicon glyphicon-chevron-down"></i></h4> {{/if}} {{> favoritenames}}
+            <h4 class="showhide">My favorite names <i class="glyphicon glyphicon-chevron-up"></i></h4> 
+            {{else}}
+            <h4 class="showhide">My favorite names <i class="glyphicon glyphicon-chevron-down"></i></h4> 
+            {{/if}} 
+            <table class="toplisttable">
+                {{#each favoriteNames}}
+                    {{> namescorewidget}} 
+                {{/each}}
+            </table>
         </div>
+        {{#if showPopularNames}}
         <div class="col-md-4 toplistbox popularlistbox {{popularlistfull}}">
             {{#if popularlistfull}}
-            <h4 class="showhide">Popular names <i class="glyphicon glyphicon-chevron-up"></i></h4> {{else}}
-            <h4 class="showhide">Popular names <i class="glyphicon glyphicon-chevron-down"></i></h4> {{/if}} {{> popularnames}}
+            <h4 class="showhide">Popular names <i class="glyphicon glyphicon-chevron-up"></i></h4> 
+            {{else}}
+            <h4 class="showhide">Popular names <i class="glyphicon glyphicon-chevron-down"></i></h4> 
+            {{/if}} 
+            <table class="toplisttable">
+                {{#each popularNames}} 
+                    {{> namescorewidget}}
+                {{/each}}
+            </table>
         </div>
+        {{/if}}
     </div>
     {{/if}}
-</template>
-<template name="boilerplate">
-    <h4>Name duel!</h4>
-    <p>Vote for your favorite!</p>
-</template>
-<template name="favoritenames">
-    <table class="toplisttable">
-        {{#each names}} {{> namescorewidget}} {{/each}}
-    </table>
-</template>
-<template name="popularnames">
-    <table class="toplisttable">
-        {{#each names}} {{> namescorewidget}} {{/each}}
-    </table>
 </template>
 <template name="namescorewidget">
     <tr>
