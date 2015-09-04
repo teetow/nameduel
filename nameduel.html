@@ -79,9 +79,9 @@
 <template name="toplists">
     {{#if currentUser}}
     <div class="row" id="toplists">
-        <div class="col-md-4">
-            <h4>Name duel!</h4>
-            <p>Vote for your favorite!</p>
+        <div class="col-md-4 instructions">
+            <h4>Instructions</h4>
+            <p>Consider each pair carefully before voting. Rooting for a favorite might distort the result. Product may contain nuts.</p>
         </div>
         <div class="col-md-4 {{#unless showPopularNames}}col-md-offset-4{{/unless}} toplistbox favoriteslistbox {{favoriteslistfull}}">
             {{#if favoriteslistfull}}

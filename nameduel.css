@@ -1,6 +1,7 @@
 body {
     font-family: Roboto, sans-serif;
     font-weight: 400;
+    color: hsl(210, 5%, 40%);
 }
 
 #votewidget {
@@ -116,4 +117,7 @@ body {
     position: absolute;
     right: -80px;
     top: 5px;
+}
+.instructions {
+    color: hsl(210, 5%, 40%);
 }
