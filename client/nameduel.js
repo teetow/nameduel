@@ -103,6 +103,7 @@ Template.addwidget.events({
         });
         template.$(".message").html(newName + " added!");
         template.$(".message").show();
+        randomizeTwoBabynames();
         template.$(".message").fadeOut(3000);
     },
     "keydown .addwidget-input": function(event, template) {

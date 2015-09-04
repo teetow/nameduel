@@ -1,6 +1,15 @@
 function userIsAuthorized() {
+    var authusers = [
+    	"boss@coolcompany.com",
+    ];
+
     var currentUserEmail = Meteor.user().emails[0].address;
-    if (currentUserEmail.indexOf("@domain.com") > -1) {
-        return true;
-    }
+    var authUserFound = false;
+    authusers.forEach(function(item) {
+        if (currentUserEmail.indexOf(item) > -1) {
+            authUserFound = true;
+        }
+    });
+
+    return authUserFound;
 }
