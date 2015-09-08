@@ -79,10 +79,45 @@
 <template name="toplists">
     {{#if currentUser}}
     <div class="row" id="toplists">
+        {{#if showUserFavs}}
+        <div class="col-md-4 userfavs">
+            {{#if userfavsfull}}
+            <h4 class="showhide">User favorites <i class="glyphicon glyphicon-chevron-up"></i></h4> 
+            <div class="flextable">
+                {{#each userFavs}}
+                <div class="flextable-header">{{name}}</div>
+                {{#each votes}}
+                <div class="flextable-row">
+                    <div class="flextable-cell cell-name">{{name}}</div>
+                    <div class="flextable-cell cell-meter">
+                    <div class="meter" style="width:{{width}}%; background-color:#{{color}}"></div>
+                    </div>
+                    <div class="flextable-cell cell-score">{{score}} ({{fights}})</div>
+                </div>
+                {{/each}}
+                {{/each}}
+            </div>
+            {{else}}
+            <h4 class="showhide">User favorites <i class="glyphicon glyphicon-chevron-down"></i></h4> 
+            <div class="flextable">
+                {{#each userFavs}}
+                <div class="flextable-row">
+                    <div class="flextable-cell cell-name">{{name}}</div>
+                {{#each votes}}
+                    <div class="flextable-cell cell-score">{{name}}</div>
+                {{/each}}
+                </div>
+                {{/each}}
+            </div>
+            {{/if}} 
+
+        </div>
+        {{else}}
         <div class="col-md-4 instructions">
             <h4>Instructions</h4>
             <p>Consider each pair carefully before voting. Rooting for a favorite might distort the result. Product may contain nuts.</p>
         </div>
+        {{/if}}
         <div class="col-md-4 {{#unless showPopularNames}}col-md-offset-4{{/unless}} toplistbox favoriteslistbox {{favoriteslistfull}}">
             {{#if favoriteslistfull}}
             <h4 class="showhide">My favorite names <i class="glyphicon glyphicon-chevron-up"></i></h4> 

@@ -56,6 +56,42 @@ function getbabyOccurrences(listOfNames, listOfVotes) {
     return babyOccurrences;
 }
 
+function getVotesByUser(votes) {
+    var votesByUser = {};
+    var votesArray = votes.fetch();
+
+    for (var iVote in votesArray) {
+        var vote = votesArray[iVote];
+
+        if (vote.voter in votesByUser) {
+            votesByUser[vote.voter].votes.push({
+                name: vote.name,
+                score: vote.score,
+                fights: vote.fights,
+                confidence: vote.confidence,
+            });
+        } else {
+            votesByUser[vote.voter] = {
+                votes: [{
+                    name: vote.name,
+                    score: vote.score,
+                    fights: vote.fights,
+                    confidence: vote.confidence,
+                }]
+            };
+        }
+    }
+    var totalVotesByUser = [];
+    for (var iVoter in votesByUser) {
+        var userVotes = votesByUser[iVoter];
+        totalVotesByUser.push({
+            name: iVoter,
+            votes: getAggregatedVotes(userVotes.votes)
+        });
+    }
+    return totalVotesByUser;
+}
+
 function getAggregatedVotes(votes) {
     var aggregatedVotes = {};
     for (var iVote in votes) {
@@ -128,8 +164,12 @@ function getWeightedRandomBabyId(babyOccurrences) {
 }
 
 function renderVotes(cursor, limit) {
-
     var aggregatedVotes = getAggregatedVotes(cursor.fetch());
+    var preparedVotes = getPreparedVotes(aggregatedVotes, limit);
+    return preparedVotes;
+}
+
+function getPreparedVotes(aggregatedVotes, limit) {
     var preparedVotes = [];
 
     for (var aggvote in aggregatedVotes) {
@@ -159,8 +199,9 @@ function renderVotes(cursor, limit) {
     });
 
     if (limit > 0) {
-        return preparedVotes.slice(0, limit + 1);
+        return preparedVotes.slice(0, limit);
     }
+
     return preparedVotes;
 }
 

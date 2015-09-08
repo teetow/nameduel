@@ -45,14 +45,17 @@ Template.toplists.helpers({
     popularNames: function() {
         var foundVotes = Votes.find();
         var renderFull = Session.equals("popularfull", true);
-        return renderVotes(foundVotes, (renderFull) ? 0 : 4);
+        return renderVotes(foundVotes, (renderFull) ? 0 : 7);
     },
     favoriteNames: function() {
         var foundVotes = Votes.find({
             voter: loggedInUser()
         });
         var renderFull = Session.equals("favoritesfull", true);
-        return renderVotes(foundVotes, (renderFull) ? 0 : 4);
+        return renderVotes(foundVotes, (renderFull) ? 0 : 7);
+    },
+    userfavsfull: function() {
+        return (Session.equals("userfavsfull", true)) ? "full": "";
     },
     favoriteslistfull: function() {
         return (Session.equals("favoritesfull", true)) ? 'full' : "";
@@ -63,10 +66,27 @@ Template.toplists.helpers({
     showPopularNames: function() {
         return userIsAuthorized();
     },
+    showUserFavs: function() {
+        return userIsAuthorized();
+    },
+    userFavs: function() {
+        var limit = Session.equals("userfavsfull", true) ? 0 : 1;
+        var votes = Votes.find();
+        var votesByUser = getVotesByUser(votes);
+        var renderedVotes = [];
+        for (var v in votesByUser) {
+            renderedVotes.push({
+                name: votesByUser[v].name,
+                votes: getPreparedVotes(votesByUser[v].votes, limit)
+            });
+        }
+        return renderedVotes;
+    }
 });
 
 Template.babyleft.events({
     'click .babyvotebox': function() {
+        console.log("herp");
         registerWin(Session.get("leftBabyId"), Session.get("rightBabyId"));
         randomizeTwoBabynames();
     }
@@ -131,6 +151,13 @@ Template.addwidget.helpers({
 });
 
 Template.toplists.events({
+    "click .userfavs h4": function() {
+        var currentState = Session.get("userfavsfull");
+        if (currentState === null)
+            Session.set("userfavsfull", true);
+        else
+            Session.set("userfavsfull", !currentState);
+    },
     'click .favoriteslistbox h4': function() {
         var currentState = Session.get("favoritesfull");
         if (currentState === null)

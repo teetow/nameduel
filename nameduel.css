@@ -55,7 +55,6 @@ body {
 .toplisttable {
     width: 100%;
     /*padding:6px;*/
-    
     border-collapse: separate;
     border-spacing: 2px 2px;
     margin: 0px;
@@ -118,6 +117,42 @@ body {
     right: -80px;
     top: 5px;
 }
+
 .instructions {
     color: hsl(210, 5%, 40%);
+}
+
+.flextable {
+    display: table;
+    width: 100%;
+}
+
+.flextable-header {
+    margin: 12px 0 0 0;
+}
+
+.flextable-row {
+    display: table-row;
+}
+
+.flextable-cell {
+    display: table-cell;
+}
+
+.flextable-cell.cell-name {
+    width: 26%;
+}
+
+.flextable-cell.cell-meter {
+    width: 52%;
+}
+
+.flextable-cell.cell-meter .meter {
+    height: 8px;
+    border-radius: 2px;
+}
+
+.flextable-cell.cell-score {
+    width: 22%;
+    text-align: right;
 }
